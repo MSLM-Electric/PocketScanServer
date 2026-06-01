@@ -2,6 +2,9 @@
 const express = require('express');
 const { Pool } = require('pg');
 
+const scoresRouter = require('./routes/scores');
+app.use('/api/scores', scoresRouter);
+
 // --- 1. Настройка подключения к базе данных ---
 // Создаем "пул соединений" - это эффективный способ управления подключениями к БД.
 // Важно: замените 'ваш_пароль' на настоящий пароль от вашей БД!
