@@ -1,16 +1,16 @@
 // routes/scores.js
 const express = require('express');
 const router = express.Router();
-const scoreModel = require('../models/scoreModel');
+const licenseModel = require('../models/licenseModel');
 
 // GET /api/scores — получить топ-10
 router.get('/', async (req, res) => {
   try {
-    const scores = await scoreModel.getTopScores();
+    const scores = await licenseModel.getAllLicenses();
     res.json(scores);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Ошибка получения рекордов' });
+    res.status(500).json({ error: 'Ошибка получения базы данных' });
   }
 });
 
@@ -21,11 +21,11 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'Неверные данные' });
   }
   try {
-    const newScore = await scoreModel.saveScore(nickname, score);
+    const newScore = await licenseModel.saveLicense(nickname, score);
     res.status(201).json(newScore);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Ошибка сохранения рекорда' });
+    res.status(500).json({ error: 'Ошибка сохранения базы данных' });
   }
 });
 
