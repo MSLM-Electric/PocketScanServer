@@ -1,0 +1,17 @@
+#restart the service
+net stop postgresql-x64-18
+net start postgresql-x64-18
+
+#installs node-postgres, the standard PostgreSQL client for Node.js
+#Allows establish connections to local or remote PostgreSQL instances.
+npm install pg
+
+#launch the server
+#go pg_hba.conf (in Program Files/PostgreSQL/.../.../..  - просто сделай поиск в папке pg_hba.conf)
+#and do
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+# IPv6 local connections:
+host    all             all             ::1/128                 trust
+#then after all worx return back to scram-sha-256 or md5
+node src/server.js
