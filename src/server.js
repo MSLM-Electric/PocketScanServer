@@ -28,4 +28,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Сервер запущен на http://localhost:${PORT}`);
   console.log(`📊 Базы данных доступны по адресу: http://localhost:${PORT}/api/licenses`);
+  console.log(`Сервер запущен на http://0.0.0.0:${PORT}`);
 });
