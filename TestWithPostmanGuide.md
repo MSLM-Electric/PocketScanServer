@@ -33,3 +33,8 @@ After successful tests with *Postman* do real test with Client & SQL-server.
 For example if the server is on another network but your phone in other wifi network, then disconnect the current network connections of server and reconnect to the wifi network where the phone belongs. It recommended only for local server implementations!
 * Get the ip-address of server device (it may be the PC, or your PC) and set as parameter for exchanging by your App.
 * Do simple tests by your android App.
+
+*SQL Server test*
+-----------------
+
+Check that the PostgreSQL service started. (services.msc)
