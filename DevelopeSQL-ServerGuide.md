@@ -18,3 +18,16 @@ And do next instructions:
 ![instrc 4.](docs/images/Screenshot_4.png)
 
 ![instrc 5.](docs/images/Screenshot_5.png)
+
+![instrc 6.](docs/images/Screenshot_6.png)
+
+![instrc 7.](docs/images/Screenshot_7.png)
+
+Раскрываем БД *some_database*, затем в списке находим **Schemas**, раскрываем ее также. В списке *Schemas* находим
+**Tables** и нажимаем на нее правой кнопкой мыши. В появившимся меню выберем **Query Tools**.
+
+После появится окно *Query Tools* где в ее поле можем записать наш SQL запрос.
+
+Например как на картинке ниже:
+
+![instrc 8.](docs/images/Screenshot_8.png)
