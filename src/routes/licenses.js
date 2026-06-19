@@ -1,31 +1,43 @@
-// routes/scores.js
 const express = require('express');
 const router = express.Router();
 const licenseModel = require('../models/licenseModel');
 
-// GET /api/scores — получить топ-10
+// GET – получить все записи
 router.get('/', async (req, res) => {
   try {
-    const scores = await licenseModel.getAllLicenses();
-    res.json(scores);
+    const data = await licenseModel.getAllLicenses();
+    res.json(data);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Ошибка получения базы данных' });
+    console.error('Ошибка GET:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 
-// POST /api/scores — сохранить новый рекорд
+// POST – сохранить запись
 router.post('/', async (req, res) => {
-  const { nickname, score } = req.body;
-  if (!nickname || score === undefined || typeof score !== 'number') {
+  console.log('🚀 1: POST-запрос получен');
+
+  // Проверка, что тело запроса вообще пришло
+  console.log('📦 2: req.body =', req.body);
+
+  const { full_name, birth_date, doc_number, category } = req.body;
+  console.log('🔍 3: Деструктуризация выполнена, поля:', { full_name, birth_date, doc_number, category });
+
+  if (!full_name || !birth_date || !doc_number || !category) {
+    console.log('❌ 4: Неверные данные, отправляем 400');
     return res.status(400).json({ error: 'Неверные данные' });
   }
+
+  console.log('✅ 5: Проверка пройдена, вызываем saveLicense...');
   try {
-    const newScore = await licenseModel.saveLicense(nickname, score);
-    res.status(201).json(newScore);
+    const saved = await licenseModel.saveLicense(full_name, birth_date, doc_number, category);
+    console.log('✅ 6: saveLicense завершён, результат:', saved);
+    res.status(201).json(saved);
+    console.log('📤 7: Ответ отправлен');
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Ошибка сохранения базы данных' });
+    console.error('❌ 8: Ошибка в saveLicense:', err);
+    res.status(500).json({ error: err.message });
+    console.log('📤 9: Ошибка отправлена');
   }
 });
 
